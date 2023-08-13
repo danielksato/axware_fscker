@@ -1,0 +1,104 @@
+$text-color: #3b3b3b;
+$border-color: #b3b3b3;
+$border: 1px solid $border-color;
+$header-color: #e6ebff;
+
+body {
+  font-family: sans-serif;
+  color: $text-color;
+}
+
+header {
+  
+  background: $header-color;
+  padding: 20px 0;
+  border-bottom: $border;
+  
+  * {
+    width: 80%;
+    margin: auto;
+  }
+  
+  form {
+    display: flex;
+    gap: 10px;
+    
+    input {
+      flex: 1 0 auto;
+    }
+  }
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+button {
+  border: $border;
+  border-radius: 3px;
+  padding: 2px 4px;
+  background: none;
+
+  &:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+article {
+  padding: 20px 0;
+  width: 80%;
+  margin: auto;
+}
+
+table {
+  border: $border; 
+  border-spacing: 0;
+  width: 100%
+}
+
+tbody {
+  tr:nth-child(2n) {
+    background: #eeeeee;
+  }
+}
+
+tr {
+  &:last-child:not(:only-child) {
+    th, td {
+      border: $border;
+      border-width: 0 1px 0 0;
+
+      &:last-child {
+        border-width: 0;
+      }
+    }
+  }
+
+  th, td {
+    border: $border;
+    border-width: 0 1px 1px 0;
+
+    &:last-child {
+      border-width: 0 0 1px 0;
+    }
+  }
+}
+
+th, td {
+  padding: 2px;
+}
+
+td form {
+  display: flex;
+  gap: 5px;
+  padding: 2px;
+
+  input {
+    width: 5rem;
+  }
+}
+
+
+
+
+
