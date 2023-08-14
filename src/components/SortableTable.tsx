@@ -3,7 +3,7 @@ import { Rows } from '../const';
 import { mapRow, displayNum, headingMap } from '../util/fieldMapping';
 import EditableCell from './EditableCell';
 
-const { DRIVER, _PAX_TIME, PAX_TIME, PAX_FACTOR } = Rows;
+const { DRIVER, _PAX_TIME, PAX_TIME, PAX_FACTOR, PAX_POS } = Rows;
 
 const SortableTable: FC<{ table: Element }> = ({ table }) => {
   const [hypothetical, setHypothetical] = useState(false);
@@ -20,7 +20,7 @@ const SortableTable: FC<{ table: Element }> = ({ table }) => {
             ({ textContent }) => textContent as string,
           ),
         )
-        .filter((row) => row[_PAX_TIME] !== 'DNS')
+        .filter((row) => `${row[_PAX_TIME]}`.toUpperCase() !== 'DNS')
         .map(mapRow)
         .slice(1)
         .sort((a, b) =>
@@ -99,8 +99,9 @@ const SortableTable: FC<{ table: Element }> = ({ table }) => {
       <tbody>
         {rows.map((row, index) => {
           const name = row[DRIVER].original;
+          const position = row[PAX_POS].original;
           return (
-            <tr key={`data-${name}`}>
+            <tr key={`data-${name}-${position}`}>
               {hypothetical ? <td>{index}</td> : null}
               {row.map(({ original, hypothetical }, i) => {
                 const key = `data-${name}-${i}`;
@@ -108,7 +109,10 @@ const SortableTable: FC<{ table: Element }> = ({ table }) => {
                   return <td key={key}>{displayNum(hypothetical)}</td>;
                 } else {
                   return (
-                    <EditableCell key={key} onChange={createOnChange(index)}>
+                    <EditableCell
+                      key={`${key}-editable`}
+                      onChange={createOnChange(index)}
+                    >
                       {displayNum(hypothetical) as string}
                     </EditableCell>
                   );

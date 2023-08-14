@@ -10,12 +10,13 @@ const Axware: FC<{ axUrl: string }> = ({ axUrl }) => {
   const [axHTML, setAxHTML] = useState(null as string | null);
 
   useEffect(() => {
-    fetch(encodeURI(PROXY_URL + AXWARE_URL))
+    setAxHTML(null);
+    fetch(encodeURI(PROXY_URL + axUrl))
       .then((res) => res.text())
       .then((html) => {
         setAxHTML(html);
       });
-  }, []);
+  }, [axUrl]);
 
   if (!axHTML) return null;
 
