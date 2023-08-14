@@ -6,7 +6,6 @@ import EditableCell from './EditableCell';
 const { DRIVER, _PAX_TIME, PAX_TIME, PAX_FACTOR, PAX_POS } = Rows;
 
 const SortableTable: FC<{ table: Element }> = ({ table }) => {
-  const [hypothetical, setHypothetical] = useState(false);
   const [sort, setSort] = useState(PAX_TIME);
   const [rows, setRows] = useState(
     [] as { original: number | string; hypothetical: number | string }[][],
@@ -75,19 +74,12 @@ const SortableTable: FC<{ table: Element }> = ({ table }) => {
           a[sort].hypothetical >= b[sort].hypothetical ? 1 : -1,
         ),
     );
-    setHypothetical(true);
   };
 
   return (
     <table>
       <thead>
         <tr>
-          {hypothetical ? (
-            <th>
-              Hypothetical{' '}
-              {headingMap[sort as keyof typeof headingMap] || headings[sort]}
-            </th>
-          ) : null}
           {headings.map((heading, i) => (
             <th key={`heading-${heading}`}>
               <button onClick={() => setSort(i)}>
@@ -102,8 +94,14 @@ const SortableTable: FC<{ table: Element }> = ({ table }) => {
           const name = row[DRIVER].original;
           const position = row[PAX_POS].original;
           return (
-            <tr key={`data-${name}-${position}`}>
-              {hypothetical ? <td>{index}</td> : null}
+            <tr
+              key={`data-${name}-${position}`}
+              className={
+                row[_PAX_TIME].hypothetical !== row[_PAX_TIME].original
+                  ? 'highlighted'
+                  : ''
+              }
+            >
               {row.map(({ original, hypothetical }, i) => {
                 const key = `data-${name}-${i}`;
                 if (i !== _PAX_TIME) {
