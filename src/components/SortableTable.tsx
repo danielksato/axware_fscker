@@ -13,20 +13,21 @@ const SortableTable: FC<{ table: Element }> = ({ table }) => {
   );
 
   useEffect(() => {
-    setRows(
-      [...table.querySelectorAll('tr')]
-        .map((tr) =>
-          [...tr.querySelectorAll('td')].map(
-            ({ textContent }) => textContent as string,
-          ),
-        )
-        .filter((row) => `${row[_PAX_TIME]}`.toUpperCase() !== 'DNS')
-        .map(mapRow)
-        .slice(1)
-        .sort((a, b) =>
-          a[sort].hypothetical >= b[sort].hypothetical ? 1 : -1,
-        ),
-    );
+    setRows((rows) => {
+      return (
+        !rows.length
+          ? [...table.querySelectorAll('tr')]
+              .map((tr) =>
+                [...tr.querySelectorAll('td')].map(
+                  ({ textContent }) => textContent as string,
+                ),
+              )
+              .filter((row) => `${row[_PAX_TIME]}`.toUpperCase() !== 'DNS')
+              .map(mapRow)
+              .slice(1)
+          : [...rows]
+      ).sort((a, b) => (a[sort].hypothetical >= b[sort].hypothetical ? 1 : -1));
+    });
   }, [sort, table]);
 
   const headings = [...table.querySelectorAll('th')].map(
