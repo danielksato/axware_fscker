@@ -15,6 +15,9 @@ const Axware: FC<{ axUrl: string }> = ({ axUrl }) => {
       .then((res) => res.text())
       .then((html) => {
         setAxHTML(html);
+      })
+      .catch((e) => {
+        console.log(e);
       });
   }, [axUrl]);
 
