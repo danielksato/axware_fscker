@@ -45,8 +45,7 @@ const SortableTable: FC<{ table: Element }> = ({ table }) => {
               ...acc,
               row.reduce(
                 (acc, val, j) => {
-                  if (j === RAW_TIME)
-                    return [...acc, { ...val, hypothetical }];
+                  if (j === RAW_TIME) return [...acc, { ...val, hypothetical }];
                   if (j === PAX_TIME)
                     return [
                       ...acc,
