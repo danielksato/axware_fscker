@@ -41,13 +41,13 @@ const App: FC = () => {
   const [url, setUrl] = useState(AXWARE_URL);
 
   useEffect(() => {
-    document.title = `Hypothetical Axware Results for ${axUrl}`;
+    document.title = `Hypothetical PAX Results for ${axUrl}`;
   }, [axUrl]);
 
   return (
     <main>
       <header>
-        <h1>Hypothetical Axware Results</h1>
+        <h1>Hypothetical PAX Results</h1>
         <form
           onSubmit={(e) => {
             e.preventDefault();

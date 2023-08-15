@@ -3,7 +3,7 @@ import { Rows } from '../const';
 import { mapRow, displayNum, headingMap } from '../util/fieldMapping';
 import EditableCell from './EditableCell';
 
-const { DRIVER, _PAX_TIME, PAX_TIME, PAX_FACTOR, PAX_POS } = Rows;
+const { DRIVER, RAW_TIME, PAX_TIME, PAX_FACTOR, PAX_POS } = Rows;
 
 const SortableTable: FC<{ table: Element }> = ({ table }) => {
   const [sort, setSort] = useState(PAX_TIME);
@@ -21,7 +21,7 @@ const SortableTable: FC<{ table: Element }> = ({ table }) => {
                   ({ textContent }) => textContent as string,
                 ),
               )
-              .filter((row) => `${row[_PAX_TIME]}`.toUpperCase() !== 'DNS')
+              .filter((row) => `${row[RAW_TIME]}`.toUpperCase() !== 'DNS')
               .map(mapRow)
               .slice(1)
           : [...rows]
@@ -45,7 +45,7 @@ const SortableTable: FC<{ table: Element }> = ({ table }) => {
               ...acc,
               row.reduce(
                 (acc, val, j) => {
-                  if (j === _PAX_TIME)
+                  if (j === RAW_TIME)
                     return [...acc, { ...val, hypothetical }];
                   if (j === PAX_TIME)
                     return [
@@ -97,14 +97,14 @@ const SortableTable: FC<{ table: Element }> = ({ table }) => {
             <tr
               key={`data-${name}-${position}`}
               className={
-                row[_PAX_TIME].hypothetical !== row[_PAX_TIME].original
+                row[RAW_TIME].hypothetical !== row[RAW_TIME].original
                   ? 'highlighted'
                   : ''
               }
             >
               {row.map(({ original, hypothetical }, i) => {
                 const key = `data-${name}-${i}`;
-                if (i !== _PAX_TIME) {
+                if (i !== RAW_TIME) {
                   return <td key={key}>{displayNum(hypothetical)}</td>;
                 } else {
                   return (

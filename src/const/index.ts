@@ -11,7 +11,7 @@ export enum Rows {
   NUM,
   DRIVER,
   CAR,
-  _PAX_TIME,
+  RAW_TIME,
   PAX_FACTOR,
   PAX_TIME,
   DIFF,
