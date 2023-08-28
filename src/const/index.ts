@@ -1,5 +1,5 @@
 export const AXWARE_URL = encodeURI(
-  'https://axwaresystems.com/axorm/files/SASCA/e07-aug12_pax.htm',
+  'https://www.spokes.org/wp-content/uploads/results/2023/spokes08_rccc_2023-08-26_pax.htm'
 );
 
 export const PROXY_URL = '/proxy?axware=';
