@@ -10,12 +10,16 @@ const Axware: FC<{ axUrl: string }> = ({ axUrl }) => {
   const [axHTML, setAxHTML] = useState(null as string | null);
 
   useEffect(() => {
-    fetch(encodeURI(PROXY_URL + AXWARE_URL))
+    setAxHTML(null);
+    fetch(encodeURI(PROXY_URL + axUrl))
       .then((res) => res.text())
       .then((html) => {
         setAxHTML(html);
+      })
+      .catch((e) => {
+        console.log(e);
       });
-  }, []);
+  }, [axUrl]);
 
   if (!axHTML) return null;
 
@@ -37,13 +41,13 @@ const App: FC = () => {
   const [url, setUrl] = useState(AXWARE_URL);
 
   useEffect(() => {
-    document.title = `Hypothetical Axware Results for ${axUrl}`;
+    document.title = `Hypothetical PAX Results for ${axUrl}`;
   }, [axUrl]);
 
   return (
     <main>
       <header>
-        <h1>Hypothetical Axware Results</h1>
+        <h1>Hypothetical PAX Results</h1>
         <form
           onSubmit={(e) => {
             e.preventDefault();

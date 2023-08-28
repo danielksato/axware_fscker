@@ -15,9 +15,7 @@ const EditableCell: FC<{ children: string; onChange: (n: number) => void }> = ({
         }}
       >
         <input value={value} onChange={(e) => setValue(e.target.value)} />
-        <button disabled={value === children} type="submit">
-          Change
-        </button>
+        <button type="submit">Apply</button>
       </form>
     </td>
   );

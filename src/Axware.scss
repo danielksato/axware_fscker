@@ -2,6 +2,7 @@ $text-color: #3b3b3b;
 $border-color: #b3b3b3;
 $border: 1px solid $border-color;
 $header-color: #e6ebff;
+$highlight-color: #ffc7b0;
 
 body {
   font-family: sans-serif;
@@ -57,8 +58,12 @@ table {
 }
 
 tbody {
-  tr:nth-child(2n) {
+  tr:nth-child(2n - 1) {
     background: #eeeeee;
+
+    &.highlighted {
+      background: $highlight-color;
+    }
   }
 }
 
@@ -81,6 +86,10 @@ tr {
     &:last-child {
       border-width: 0 0 1px 0;
     }
+  }
+
+  &.highlighted {
+    background: $highlight-color;
   }
 }
 

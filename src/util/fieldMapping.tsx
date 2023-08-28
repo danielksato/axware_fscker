@@ -1,6 +1,6 @@
 import { Rows } from '../const';
 
-const { _PAX_TIME, PAX_TIME, PAX_FACTOR, DRIVER, CAR, CLASS, CLASS_POS } = Rows;
+const { RAW_TIME, PAX_TIME, PAX_FACTOR, DRIVER, CAR, CLASS, CLASS_POS } = Rows;
 
 const paxFactor = (factor: string): number =>
   parseFloat(/[\d.]+/.exec(factor)?.[0] || '');
@@ -13,7 +13,7 @@ export const mapRow = (
       switch (i) {
         case PAX_FACTOR:
           return paxFactor(val);
-        case _PAX_TIME:
+        case RAW_TIME:
           if (val !== row[PAX_TIME]) {
             return parseFloat(row[PAX_TIME]) / paxFactor(row[PAX_FACTOR]);
           } else {
@@ -38,7 +38,7 @@ export const displayNum = (val: number | string): number | string => {
 };
 
 export const headingMap = {
-  [_PAX_TIME]: 'Raw Time',
+  [RAW_TIME]: 'Raw Time',
   [PAX_FACTOR]: 'PAX',
   [CLASS_POS]: 'Class Pos.',
 };

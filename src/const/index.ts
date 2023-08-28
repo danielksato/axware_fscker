@@ -1,5 +1,5 @@
 export const AXWARE_URL = encodeURI(
-  'https://www.spokes.org/wp-content/uploads/results/2023/spokes08_rccc_2023-08-26_pax.htm'
+  'https://www.spokes.org/wp-content/uploads/results/2023/spokes08_rccc_2023-08-26_pax.htm',
 );
 
 export const PROXY_URL = '/proxy?axware=';
@@ -11,7 +11,7 @@ export enum Rows {
   NUM,
   DRIVER,
   CAR,
-  _PAX_TIME,
+  RAW_TIME,
   PAX_FACTOR,
   PAX_TIME,
   DIFF,
